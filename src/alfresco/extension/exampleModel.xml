@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Definition of new Model -->
+<model name="orb:orbitzmodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+<!-- Optional meta-data about the model -->
+<description>Orbitz Marketing Model</description>
+<author>Ed Wentworth</author>
+<version>1.0</version>
+
+<!-- Imports are required to allow references to definitions in other models -->
+<imports>
+  <!-- Import Alfresco Dictionary Definitions -->
+  <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d" />
+  <!-- Import Alfresco Content Domain Model Definitions -->
+  <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm" />
+</imports>
+
+<!-- Introduction of new namespaces defined by this model -->
+<namespaces>
+  <namespace uri="http://www.orbitz.com/model/content/1.0" prefix="orb" />
+</namespaces>
+<constraints>
+  <constraint name="orb:brands" type="LIST">
+      <parameter name="allowedValues">
+          <list>
+              <value>Orbitz</value>
+              <value>CheapTickets</value>
+              <value>eBookers</value>
+          </list>
+      </parameter>
+      <parameter name="caseSensitive"><value>true</value></parameter>
+  </constraint>
+</constraints>
+
+<types>
+  <!-- Enterprise-wide generic document type -->
+  <type name="orb:doc">
+      <title>Orbitz Document</title>
+      <parent>cm:content</parent>
+      <mandatory-aspects>
+        <aspect>cm:generalclassifiable</aspect>
+      </mandatory-aspects>
+  </type>
+
+  <type name="orb:marketing_content">
+      <title>Orbitz Marketing Content</title>
+      <parent>orb:doc</parent>
+      <properties>
+          <property name="orb:effective_from">
+              <type>d:date</type>
+          </property>
+          <property name="orb:effective_to">
+              <type>d:date</type>
+          </property>
+      </properties>
+  </type>
+</types>
+
+<aspects>
+  <aspect name="orb:brandable">
+      <title>Orbitz Brandable</title>
+      <properties>
+          <property name="orb:brand">
+              <type>d:text</type>
+              <mandatory>true</mandatory>
+              <constraints>
+                  <constraint ref="orb:brands"/>
+              </constraints>
+          </property>          
+      </properties>
+  </aspect>
+
+</aspects>
+</model>

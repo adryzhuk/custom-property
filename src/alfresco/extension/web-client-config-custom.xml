@@ -1,0 +1,88 @@
+<alfresco-config>
+
+   <!-- Example of adding languages to the list in the login page -->
+   <config evaluator="string-compare" condition="Languages">
+      <languages>
+         <language locale="ca_ES">Catalan</language>
+         <language locale="hr_HR">Croatian</language>
+         <language locale="cs_CZ">Czech</language>
+         <language locale="da_DK">Danish</language>
+         <language locale="de_DE">German</language>
+         <language locale="es_ES">Spanish</language>
+         <language locale="el_GR">Greek</language>
+         <language locale="fi_FI">Finnish</language>
+         <language locale="fr_FR">French</language>
+         <language locale="it_IT">Italian</language>
+         <language locale="ja_JP">Japanese</language>
+         <language locale="du_NL">Dutch</language>
+         <language locale="pl_PL">Polish</language>
+         <language locale="pt_PT">Portuguese</language>
+         <language locale="pt_BR">Portuguese (Brazilian)</language>
+         <language locale="ru_RU">Russian</language>
+         <language locale="sv_SV">Swedish</language>
+         <language locale="tr_TR">Turkish</language>
+         <language locale="zh_CN">Simplified Chinese</language>
+      </languages>
+   </config>
+<!--  add webable aspect properties to property sheet -->
+<config evaluator="aspect-name" condition="orb:brandable">
+  <property-sheet>
+      <show-property name="orb:brand" display-label="Brand" />
+  </property-sheet>
+</config>
+
+<!-- show related documents association on doc property sheet -->
+<config evaluator="node-type" condition="orb:doc">
+  <property-sheet>
+  </property-sheet>
+</config>
+
+<!-- show related documents association on whitepaper property sheet -->
+<config evaluator="node-type" condition="orb:marketing_content">
+  <property-sheet>
+      <show-property name="orb:effective_from" display-label="Effective_From" />
+      <show-property name="orb:effective_to" display-label="Effective_To" />
+  </property-sheet>
+</config>
+
+<!--  add orbitz types to add content list -->
+<config evaluator="string-compare" condition="Content Wizards">
+  <content-types>
+      <type name="orb:doc" />
+      <type name="orb:marketing_content" />
+  </content-types>
+</config>
+
+<config evaluator="string-compare" condition="Action Wizards">
+  <!-- The list of aspects to show in the add/remove features action -->
+  <!-- and the has-aspect condition -->
+  <aspects>
+      <aspect name="orb:brandable"/>
+  </aspects>
+
+  <!-- The list of types shown in the is-subtype condition -->
+  <subtypes>
+      <type name="orb:doc" />
+      <type name="orb:marketing_content" />
+  </subtypes>  
+
+  <!-- The list of content and/or folder types shown in the specialise-type action -->
+  <specialise-types>
+      <type name="orb:doc" />
+      <type name="orb:marketing_content" />
+  </specialise-types>  
+</config>
+
+<config evaluator="string-compare" condition="Advanced Search">
+  <advanced-search>
+      <content-types>
+          <type name="orb:doc" />
+          <type name="orb:marketing_content" />
+      </content-types>
+      <custom-properties>
+          <meta-data aspect="orb:brandable" property="orb:brand" display-label="Brand" />
+      </custom-properties>
+  </advanced-search>
+</config>
+
+</alfresco-config>
